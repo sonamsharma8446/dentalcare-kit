@@ -1,0 +1,209 @@
+/* Design tokens, base styles and shared utilities. Component styles live in App.css. */
+
+:root {
+  /* Colours: white backgrounds, navy text, teal accents */
+  --navy: #0b2545;
+  --muted: #44566f;
+  --teal: #0f766e; /* 5.5:1 on white: safe for text and button backgrounds */
+  --teal-dark: #115e59;
+  --teal-bright: #14b8a6; /* decorative only, too light for small text */
+  --teal-tint: #e6f6f4;
+  --teal-wash: #f3fbfa;
+  --line: #d3e3e7;
+  --control-border: #5f7790; /* 4.5:1 on white for form controls */
+  --danger: #b42318;
+  --danger-bg: #fef3f2;
+  --danger-line: #f4c7c3;
+  --amber: #c2680a;
+  --amber-bg: #fff8ee;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow-sm: 0 1px 2px rgba(11, 37, 69, 0.06), 0 4px 14px rgba(11, 37, 69, 0.06);
+  --shadow-md: 0 10px 32px rgba(11, 37, 69, 0.13);
+  --container: 1160px;
+  --header-h: 68px;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--navy);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+body:has(dialog[open]) {
+  overflow: hidden; /* stop the page scrolling behind a modal */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+  max-width: 100%;
+}
+
+a {
+  color: var(--teal);
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 8px);
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Keyboard focus: a clear ring on every interactive element */
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Utilities ---------- */
+
+.container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.6rem;
+  color: var(--teal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.7rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--teal-dark);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #fff;
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.btn-secondary:hover {
+  background: var(--teal-tint);
+  transform: translateY(-1px);
+}
+
+.btn-small {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 0.92rem;
+}
+
+.link-button {
+  min-height: 40px;
+  padding: 0.4rem 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--teal);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Respect the "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
